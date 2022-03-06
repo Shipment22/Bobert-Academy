@@ -409,9 +409,17 @@ function set_cursor(position, element) {
 function editorLineNums() {
     let lineNums = document.querySelector('.editor-line-nums')
     lineNums.style.lineHeight = '20px'
-        
-    lineNums.innerHTML = ''
-    for (i = 1; i < codeDiv.innerHTML.split('<br>').length; i ++) {
+    
+    let numOfLineNums = lineNums.innerHTML.split('<br>').length
+    let numOfLines = codeDiv.innerHTML.split('<br>').length
+
+    if (numOfLineNums > numOfLines) {
+        for (i = 0; i < numOfLineNums - numOfLines; i++) {
+            lineNums.innerHTML = lineNums.innerHTML.replace(numOfLineNums-i+'<br>', '')
+        }
+        return
+    }
+    for (i = numOfLineNums; i < numOfLines; i ++) {
         lineNums.innerHTML += `${i}<br>`
     }
 }
@@ -425,7 +433,7 @@ setInterval(() => {
 
 setInterval(highlight, 1000)
 
-codeDiv.onkeyup = function (e) {
+codeDiv.onkeydown = function (e) {
     if (keyUpTimer < 2 && !highlighting) return
     else keyUpTimer = 0; highlighting = true
 
