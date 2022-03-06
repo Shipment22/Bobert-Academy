@@ -6,6 +6,8 @@ let cursorPos = {
     col: 0
 }
 
+// ^ highlighter made by vExcess
+
 // Stole the sample code from Quinn, who stole it from IA
 var code = 
 `// edit this on line 22
@@ -70,6 +72,15 @@ function highlight (contentDiv) {
         green: "rgb(166, 226, 46)",
         purple: "rgb(144, 129, 255)",
         brown: "rgb(117, 113, 94)",
+        comment: {
+            default: 'rgb(117, 113, 94)',
+            red: "red",
+            purple: "purple",
+            yellow: "yellow",
+            blue: "blue",
+            pink: "pink",
+            green: "green"
+        }
     };
     
     var spans = [];
@@ -130,7 +141,21 @@ function highlight (contentDiv) {
                 
                 done = true;
                 didString = true;
-                clr = colors.brown;
+                clr = colors.comment.default;
+                if (has(currTok, "// ")) {
+                } else if (has(currTok, "//\!")) {
+                    clr = colors.comment.red;
+                } else if (has(currTok, "//\~")) {
+                    clr = colors.comment.purple;
+                } else if (has(currTok, "//\^")) {
+                    clr = colors.comment.yellow;
+                } else if (has(currTok, "//\&")) {
+                    clr = colors.comment.pink;
+                } else if (has(currTok, "//\*")) {
+                    clr = colors.comment.green;
+                } else if (has(currTok, "//\?")) {
+                    clr = colors.comment.blue;
+                }
             }
         }
         
@@ -146,7 +171,30 @@ function highlight (contentDiv) {
                 done = true;
                 clr = colors.red;
             }
-            if (is(currTok, "+") || is(currTok, "-") || is(currTok, "*") || (is(currTok, "/") && txt.charAt(idx + 1) !== "/") || is(currTok, ">") || is(currTok, "<") || is(currTok, "=") || is(currTok, "==") || is(currTok, "===") || is(currTok, "!==") || is(currTok, "if") || is(currTok, "while") || is(currTok, "for") || is(currTok, "try") || is(currTok, "catch") || is(currTok, "finally")|| is(currTok, "new")) {
+            if (is(currTok, "+") ||
+                is(currTok, "-") ||
+                is(currTok, "*") ||
+                (is(currTok, "/") && txt.charAt(idx + 1) !== "/") ||
+                is(currTok, ">") ||
+                is(currTok, "<") ||
+                is(currTok, "=") ||
+                is(currTok, "==") ||
+                is(currTok, "===") ||
+                is(currTok, "!==") ||
+                is(currTok, "if") ||
+                is(currTok, "while") ||
+                is(currTok, "for") ||
+                is(currTok, "try") ||
+                is(currTok, "catch") ||
+                is(currTok, "finally") ||
+                is(currTok, "new") ||
+                is(currTok, "throw") ||
+                is(currTok, "switch") ||
+                is(currTok, "case") ||
+                is(currTok, "break") ||
+                is(currTok, "extends") ||
+                is(currTok, "await") ||
+                is(currTok, "typeof")) {
                 done = true;
                 clr = colors.red;
             }
@@ -164,7 +212,12 @@ function highlight (contentDiv) {
                 done = true;
                 clr = colors.green;
             }
-            if (has(currTok, "this") || has(currTok, ":") || has(currTok, "Math") || has(currTok, "Number") || has(currTok, "String") || has(currTok, "JSON")) {
+            if (has(currTok, "this") || 
+                has(currTok, ":") || 
+                has(currTok, "Math") || 
+                has(currTok, "Number") || 
+                has(currTok, "String") || 
+                has(currTok, "JSON")) {
                 done = true;
                 clr = colors.green;
             }
@@ -192,11 +245,14 @@ function highlight (contentDiv) {
                 done = true;
                 clr = colors.teal;
             }
-            if (is(currTok, "function")) {
+            if (is(currTok, "function") 
+                || is(currTok, "class")) {
                 var startIdx = idx;
                 
                 var name = "";
-                while (idx < txt.length && txt.charAt(idx) !== "(") {
+                while (idx < txt.length 
+                    && txt.charAt(idx) !== "(" 
+                    && txt.charAt(idx) !== "{") {
                     idx++;
                     name += txt.charAt(idx);
                 }
@@ -248,15 +304,12 @@ function highlight (contentDiv) {
                 done = true;
                 currTok = "(";
             }
-            if (is(currTok, "var")) {
-                done = true;
-                clr = colors.teal;
-            }
-            if (is(currTok, "let")) {
-                done = true;
-                clr = colors.teal;
-            }
-            if (is(currTok, "const")) {
+            if (is(currTok, "var") || 
+                is(currTok, "let") || 
+                is(currTok, "const") || 
+                is(currTok, "console") ||
+                is(currTok, "println") ||
+                is(currTok, "eval")) {
                 done = true;
                 clr = colors.teal;
             }
@@ -264,7 +317,11 @@ function highlight (contentDiv) {
 
         // ---------- purple ----------
         if (!didString) {
-            if (!isNaN(parseFloat(currTok)) || is(currTok, "true") || is(currTok, "false") || is(currTok, "null") || is(currTok, "undefined")) {
+            if (!isNaN(parseFloat(currTok)) || 
+                is(currTok, "true") || 
+                is(currTok, "false") || 
+                is(currTok, "null") || 
+                is(currTok, "undefined")) {
                 done = true;
                 clr = colors.purple;
             }
@@ -272,7 +329,11 @@ function highlight (contentDiv) {
 
         // ---------- white ----------
         if (!didString) {
-            if (has(currTok, " ") || has(currTok, "(") || has(currTok, ")") || has(currTok, "{") || has(currTok, "}") || has(currTok, "[") || has(currTok, "]") || has(currTok, ";")) {
+            if (has(currTok, " ") || 
+                has(currTok, "(") || 
+                has(currTok, ")") || has(currTok, "{") 
+                || has(currTok, "}") || has(currTok, "[") 
+                || has(currTok, "]") || has(currTok, ";")) {
                 done = true;
                 clr = colors.white;
             }
@@ -356,7 +417,15 @@ function editorLineNums() {
 }
 editorLineNums()
 
+let keyUpTimer = 0
+
+setInterval(() => {
+    keyUpTimer ++
+}, 50)
+
 codeDiv.onkeyup = function (e) {
+    if (keyUpTimer < 5) return
+    else keyUpTimer = 0
 
     if (e.key.replace(/[a-zA-Z'";:,.<>/?]/, '') !== '') {
         editorLineNums()
