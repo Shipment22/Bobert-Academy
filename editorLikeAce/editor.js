@@ -252,6 +252,14 @@ function highlight (contentDiv) {
                 done = true;
                 clr = colors.teal;
             }
+            if (is(currTok, "let")) {
+                done = true;
+                clr = colors.teal;
+            }
+            if (is(currTok, "const")) {
+                done = true;
+                clr = colors.teal;
+            }
         }
 
         // ---------- purple ----------
