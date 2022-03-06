@@ -8,7 +8,7 @@ let cursorPos = {
 
 // ^ highlighter made by vExcess
 
-// Stole the sample code from Quinn, who stole it from IA
+//~ Stole the sample code from Quinn, who stole it from IA
 var code = 
 `// edit this on line 22
 var array = [];
@@ -417,15 +417,17 @@ function editorLineNums() {
 }
 editorLineNums()
 
-let keyUpTimer = 0
+let keyUpTimer = 0, highlighting = false
 
 setInterval(() => {
     keyUpTimer ++
 }, 50)
 
+setInterval(highlight, 1000)
+
 codeDiv.onkeyup = function (e) {
-    if (keyUpTimer < 5) return
-    else keyUpTimer = 0
+    if (keyUpTimer < 2 && !highlighting) return
+    else keyUpTimer = 0; highlighting = true
 
     if (e.key.replace(/[a-zA-Z'";:,.<>/?]/, '') !== '') {
         editorLineNums()
@@ -454,7 +456,6 @@ codeDiv.onkeyup = function (e) {
     set_cursor(end, this);
 
     editorLineNums()
+
+    highlighting = false
 }
-
-
-
