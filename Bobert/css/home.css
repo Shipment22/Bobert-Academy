@@ -1,0 +1,314 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #222;
+  color: #eee;
+  font-family: sans-serif;
+  padding: .5rem;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+::-moz-selection {
+  background: #000;
+  color: orange;
+}
+
+::selection {
+  background: #000;
+  color: orange;
+}
+
+#discription {
+  margin-top: .3rem;
+  margin-bottom: .3rem;
+}
+
+#discription p {
+  padding: 1rem;
+}
+
+img {
+  max-width: 100%;
+  margin-top: .3rem;
+  margin-bottom: 0;
+}
+
+a {
+  position: relative;
+  text-decoration: none;
+  color: orange;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 2px;
+  background: orange;
+  -webkit-transition: -webkit-transform 250ms;
+  transition: -webkit-transform 250ms;
+  transition: transform 250ms;
+  transition: transform 250ms, -webkit-transform 250ms;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+}
+
+a:hover::after, a:focus::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+p {
+  max-width: 65ch;
+  line-height: 1.6em;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 3rem;
+}
+
+header #bobert-loogoo img {
+  max-height: clamp(30px, 4vw, 2rem);
+}
+
+header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: Max(0.5rem, 3vw);
+  text-transform: capitalize;
+}
+
+header nav a {
+  font-size: Clamp(1rem, 5vw, 1.3rem);
+  color: #eee;
+}
+
+#title {
+  color: orange;
+}
+
+.main-img {
+  max-width: Min(calc(540px + 10vw), 100%);
+}
+
+footer {
+  background: #333;
+  margin: .4rem;
+  padding-left: 2rem;
+  line-height: 3rem;
+}
+
+#features {
+  margin-top: 3rem;
+  padding: 1rem;
+}
+
+#features div {
+  position: relative;
+  width: 100%;
+}
+
+#features div h4 {
+  line-height: .5em;
+}
+
+#features div::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #3335;
+  -webkit-box-shadow: 0 0 3px 1.35rem #3335;
+          box-shadow: 0 0 3px 1.35rem #3335;
+  z-index: -1;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+  -webkit-transition: -webkit-transform 320ms cubic-bezier(0.16, -0.2, 0.82, 1.14);
+  transition: -webkit-transform 320ms cubic-bezier(0.16, -0.2, 0.82, 1.14);
+  transition: transform 320ms cubic-bezier(0.16, -0.2, 0.82, 1.14);
+  transition: transform 320ms cubic-bezier(0.16, -0.2, 0.82, 1.14), -webkit-transform 320ms cubic-bezier(0.16, -0.2, 0.82, 1.14);
+}
+
+#features div.img-go-right::after {
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+#features div:hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+#features div.img-go-right:hover::after {
+  -webkit-transform-origin: right;
+          transform-origin: right;
+}
+
+@media (min-width: 669px) {
+  .main-grid {
+    display: -ms-grid;
+    display: grid;
+    gap: 2em;
+    position: relative;
+  }
+  header {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: subgrid;
+        grid-template-columns: subgrid;
+  }
+  header nav {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 3;
+    grid-column: 2 / 5;
+  }
+  header #bobert-loogoo {
+    margin: 1rem;
+    position: fixed;
+    top: -.1rem;
+  }
+  main {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: subgrid;
+        grid-template-columns: subgrid;
+    grid-auto-flow: dense;
+    min-height: Min(50vh, 500px);
+  }
+  #title {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1 / 2;
+    -ms-grid-row: 1;
+    grid-row: 1;
+    white-space: nowrap;
+    padding: 2rem;
+    text-shadow: 2px 2px 2px #000;
+    min-height: Min(6vw, 7rem);
+  }
+  #title h1 {
+    font-size: Min(6vw, 7rem);
+    z-index: 10;
+    position: fixed;
+    -webkit-transition: top 100ms ease, left 50ms ease, font-size 80ms ease;
+    transition: top 100ms ease, left 50ms ease, font-size 80ms ease;
+  }
+  #discription {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 2;
+    grid-row: 2;
+    padding-left: Min(5.5rem, 2vw);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #discription p {
+    padding: 2rem;
+    text-shadow: 2px 2px 2px #000;
+  }
+  #discription::after {
+    content: "{\\}";
+    font-size: 40vw;
+    position: absolute;
+    opacity: 0.03;
+    z-index: -100;
+    line-height: 1;
+    left: 0;
+    top: 0;
+  }
+  #main-img {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 7;
+    grid-column: 1 / 8;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    grid-row: 1 / 3;
+    z-index: -1;
+    background: url("../img/bobert.png") 90% 4rem/Min(50vw, 600px) auto fixed no-repeat;
+  }
+  #main-img img {
+    display: none;
+    position: absolute;
+    top: -Min(5rem, 5vw);
+    bottom: -Min(5rem, 5vw);
+    left: -Min(5rem, 5vw);
+    right: -Min(5rem, 5vw);
+  }
+  #features {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 1.5rem;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+  }
+  #features div {
+    display: -ms-grid;
+    display: grid;
+    gap: 2rem;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #features div img {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    height: 7rem;
+  }
+  #features div p {
+    -ms-grid-column: 2;
+    grid-column: 2;
+    max-width: 45ch;
+    text-shadow: 2px 2px 2px #000;
+  }
+  #features div.img-go-right img {
+    -ms-grid-column: 2;
+    grid-column: 2;
+  }
+  #features div.img-go-right p {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 1;
+    grid-row: 1;
+  }
+}
+/*# sourceMappingURL=home.css.map */

@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #222;
+  color: #eee;
+}
+
+.editor {
+  max-height: 85vh;
+  overflow: auto;
+}
+
+.editor .scroll-wraper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.editor .scroll-wraper .editor-line-nums {
+  padding: 8px;
+}
+
+.editor .scroll-wraper .editor-text {
+  padding: 8px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+/*# sourceMappingURL=style.css.map */
