@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#wraper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: calc(100vh - 1.5rem);
+}
+
+#wraper #sidebar {
+  background: blue;
+  -webkit-box-flex: .7;
+      -ms-flex: .7;
+          flex: .7;
+}
+
+#wraper #editor-pane {
+  position: relative;
+  -webkit-box-flex: 15;
+      -ms-flex: 15;
+          flex: 15;
+}
+
+#wraper #editor-pane .editor {
+  height: 100%;
+}
+
+#wraper #output-pane {
+  background: pink;
+  -webkit-box-flex: 10;
+      -ms-flex: 10;
+          flex: 10;
+}
+
+#status-bar {
+  background: red;
+  line-height: 1.5rem;
+}
+/*# sourceMappingURL=style.css.map */

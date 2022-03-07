@@ -47,7 +47,6 @@ thing.style.fontFamily = "monospace";
 thing.style.fontSize = '12px'
 thing.style.lineHeight = '20px'
 thing.style.backgroundColor = "rgb(39, 40, 34)";
-thing.style.borderRadius = "5px";
 thing.style.color = "white";
 thing.style.padding = "8px";
 thing.id = "myCode";
@@ -59,7 +58,7 @@ scrollyscroll.appendChild(thing);
 var codeDiv = document.getElementById("myCode");
 
 function highlight (contentDiv) {
-    var txt = contentDiv.innerText;
+    try { var txt = contentDiv.innerText; } catch(e) { return; }
     contentDiv.innerHTML = "";
     
     var allowedVarChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,_$";
@@ -103,7 +102,7 @@ function highlight (contentDiv) {
         var didString = false;
     
         // ---------- yellow ----------
-        if (is(currChar, '"') || is(currChar, "'")) {
+        if (is(currChar, '"') || is(currChar, "'") || is(currChar, "`")) {
             var s = document.createElement("span");
             s.innerText = currTok.slice(0, currTok.length - 1);
             s.style.color = clr;
@@ -361,7 +360,6 @@ function highlight (contentDiv) {
     }
 }
 
-
 var startMS = Date.now();
 highlight(codeDiv);
 var endMS = Date.now();
@@ -406,6 +404,7 @@ function set_cursor(position, element) {
   selection.addRange(range);
 }
 
+
 function editorLineNums() {
     let lineNums = document.querySelector('.editor-line-nums')
     lineNums.style.lineHeight = '20px'
@@ -433,12 +432,13 @@ setInterval(() => {
 
 setInterval(highlight, 1000)
 
-codeDiv.onkeydown = function (e) {
+codeDiv.onkeydown = e => editorLineNums()
+
+codeDiv.onkeyup = function (e) {
     if (keyUpTimer < 2 && !highlighting) return
     else keyUpTimer = 0; highlighting = true
 
     if (e.key.replace(/[a-zA-Z'";:,.<>/?]/, '') !== '') {
-        editorLineNums()
         return
     }
 
