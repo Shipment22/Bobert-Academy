@@ -43,6 +43,7 @@ body {
 #sidebar .content {
   background: #2a2a2a;
   height: 100%;
+  margin-left: Clamp(2rem, 3vw, 100px);
 }
 
 #sidebar .content > div {
@@ -52,7 +53,7 @@ body {
 #sidebar .content > div.open {
   display: block;
   position: relative;
-  width: Clamp(8rem, 14vw, 400px);
+  width: Clamp(6rem, 10vw, 400px);
 }
 
 #sidebar .content #files {
