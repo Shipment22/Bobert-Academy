@@ -39,9 +39,10 @@ body
             display: none
         > div.open
             display: block
+            position: relative
             width: Clamp(8rem, 14vw, 400px) 
 
-        #files 
+        #files
             display: flex
             flex-direction: column
 
@@ -57,6 +58,26 @@ body
                 cursor: pointer
                 background: #fff1
 
+        .add
+            position: absolute
+            top: 0
+            right: 0
+            button
+                background: none
+                border: none
+                color: #fff
+                line-height: 1.6em
+                img
+                    max-width: 1.3rem
+
+            button:hover
+                cursor: pointer
+                background: #fff1
+
+
+                
+            
+
             
         
 
@@ -68,7 +89,7 @@ body
 
     #editor-pane
         position: relative
-        flex: 3
+        flex: 6
         height: 100%
 
         .editor
@@ -82,7 +103,7 @@ body
                 outline: none
 
     #output-pane
-        flex: 2
+        flex: 5
 
         #output
             width: 100%

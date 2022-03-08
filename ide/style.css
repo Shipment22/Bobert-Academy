@@ -51,6 +51,7 @@ body {
 
 #sidebar .content > div.open {
   display: block;
+  position: relative;
   width: Clamp(8rem, 14vw, 400px);
 }
 
@@ -78,6 +79,28 @@ body {
   background: #fff1;
 }
 
+#sidebar .content .add {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#sidebar .content .add button {
+  background: none;
+  border: none;
+  color: #fff;
+  line-height: 1.6em;
+}
+
+#sidebar .content .add button img {
+  max-width: 1.3rem;
+}
+
+#sidebar .content .add button:hover {
+  cursor: pointer;
+  background: #fff1;
+}
+
 #wraper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -87,9 +110,9 @@ body {
 
 #wraper #editor-pane {
   position: relative;
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
+  -webkit-box-flex: 6;
+      -ms-flex: 6;
+          flex: 6;
   height: 100%;
 }
 
@@ -107,9 +130,9 @@ body {
 }
 
 #wraper #output-pane {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
+  -webkit-box-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
 }
 
 #wraper #output-pane #output {

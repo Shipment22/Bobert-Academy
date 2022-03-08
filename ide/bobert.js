@@ -75,7 +75,9 @@ function addFile(name, type, content) {
     <title>Document</title>
 </head>
 <body>
-    
+    Bobert
+
+    <script src="main.js"></script>
 </body>
 </html>`
                 break
@@ -171,10 +173,24 @@ setFile('index.html')
 addFile('style.css')
 addFile('main.js')
 
+document.getElementById('new-file').onclick = () => {
+    let name = prompt('file name')
+    if (name) addFile(name)
+}
+
+let updateTimer = 0
+
+setInterval(() => {
+    updateTimer ++
+}, 10)
+
 codeDiv.onkeydown = e => {
     setTimeout(() => {
         grabFileFromEditor()
-        runFile('index.html')
-    }, 10)
+        if (updateTimer > 5) {
+            runFile('index.html')
+            updateTimer = 0
+        }
+    }, 20)
     editorLineNums()
 }
