@@ -64,29 +64,18 @@ function addFile(name, type, content) {
         switch (type) {
             case 'htm':
                 type = 'html'
+            case 'html':
                 content = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Document</title>
 </head>
 <body>
     
-</body>
-</html>`
-                break
-            case 'html':
-                content = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    hello
 </body>
 </html>`
                 break
@@ -122,15 +111,6 @@ body {
     document.getElementById('files').append(file)
 }
 
-function setFile(name) {
-    for (o of files) {
-        if (o.name === name) {
-            codeDiv.textContent = o.content
-            fileEditing = name
-        }
-    }
-    editorLineNums()
-}
 
 function getFileIndex(name) {
     for (i in files) {
@@ -144,9 +124,36 @@ function getFile(name) {
     return files[getFileIndex(name)]
 }
 
-function runFile(name) {
+function setFile(name) {
     let file = getFile(name)
-    output.srcdoc = file.content
+    codeDiv.textContent = file.content
+    fileEditing = file.name
+    editorLineNums()
+}
+
+function runFile(name) {
+    let doc = getFile(name).content
+
+    // code shortener
+    function r(replace, what) {
+        doc = doc.replace(new RegExp(replace, "gi"), what);
+    }
+    for (f of files) {
+        // loads css and js files
+        let n = f.name, type = f.type        
+        if (type === 'css') {
+            r(`<link\\s+rel\\s*=\\s*["']stylesheet["']\\s*type\\s*=\\s*["']text/css["']\\s*href\\s*=\\s*["']${n}["']\\s*>`, `<style>${getFile(n).content}</style>`);
+            r(`<link\\s+type\\s*=\\s*["']text/css["']\\s*rel\\s*=\\s*["']stylesheet["']\\s*href\\s*=\\s*["']${n}["']\\s*>`, `<style>${getFile(n).content}</style>`);
+            r(`<link\\s+href\\s*=\\s*["']${n}["']\\s*type\\s*=\\s*["']text/css["']\\s*rel\\s*=\\s*["']stylesheet["']\\s*>`, `<style>${getFile(n).content}</style>`);
+            r(`<link\\s+href\\s*=\\s*["']${n}["']\\s*type\\s*=\\s*["']text/css["']\\s*rel\\s*=\\s*["']stylesheet["']\\s*href\\s*=\\s*["']${n}["']\\s*>`, `<style>${getFile(n).content}</style>`);
+            r(`<link\\s+rel\\s*=\\s*["']stylesheet["']\\s*href\\s*=\\s*["']${n}["']\\s*type\\s*=\\s*["']text/css["']\\s*href\\s*=\\s*["']${n}["']\\s*>`, `<style>${getFile(n).content}</style>`);
+            r(`<link\\s+type\\s*=\\s*["']text/css["']\\s*href\\s*=\\s*["']${n}["']\\s*rel\\s*=\\s*["']stylesheet["']\\s*href\\s*=\\s*["']${n}["']\\s*>`, `<style>${getFile(n).content}</style>`);
+        } else if (type === 'js') {
+            r(`\\s*src\\s*=\\s*["']${n}["']([^<>]*)>`, `$1>${getFile(n).content}`);
+        }
+    }
+
+    output.srcdoc = doc
 }
 
 function updateFile(file) {
@@ -165,7 +172,9 @@ addFile('style.css')
 addFile('main.js')
 
 codeDiv.onkeydown = e => {
-    grabFileFromEditor()
+    setTimeout(() => {
+        grabFileFromEditor()
+        runFile('index.html')
+    }, 10)
     editorLineNums()
-    runFile('index.html')
 }
