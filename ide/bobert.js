@@ -24,7 +24,7 @@ function editorLineNums() {
     lineNums.style.lineHeight = '20px'
     
     let numOfLineNums = lineNums.innerHTML.split('<br>').length
-    let numOfLines = codeDiv.innerHTML.replaceAll(/<br>/g, '\n').split('\n').length
+    let numOfLines = codeDiv.innerHTML.replaceAll(/<br>/g, '\n').replaceAll(/<br\/>/g, '\n').split('\n').length
 
     if (numOfLineNums > numOfLines) {
         for (i = 0; i < numOfLineNums - (numOfLines - 1); i++) {
@@ -37,8 +37,6 @@ function editorLineNums() {
     }
 }
 editorLineNums()
-
-codeDiv.onkeydown = e => editorLineNums()
 
 function openSidebarSection(section) {
     try {
@@ -56,6 +54,7 @@ function openSidebarSection(section) {
 
 
 const files = []
+let fileEditing = 'index.html'
 
 function addFile(name, type, content) {
     if (!type) {
@@ -127,17 +126,22 @@ function setFile(name) {
     for (o of files) {
         if (o.name === name) {
             codeDiv.textContent = o.content
+            fileEditing = name
         }
     }
     editorLineNums()
 }
 
-function getFile(name) {
-    for (o of files) {
-        if (o.name === name) {
-            return o
+function getFileIndex(name) {
+    for (i in files) {
+        if (files[i].name === name) {
+            return i
         }
     }
+}
+
+function getFile(name) {
+    return files[getFileIndex(name)]
 }
 
 function runFile(name) {
@@ -145,7 +149,23 @@ function runFile(name) {
     output.srcdoc = file.content
 }
 
+function updateFile(file) {
+    files[getFileIndex(file.name)] = file
+}
+
+function grabFileFromEditor() {
+    let file = getFile(fileEditing)
+    file.content = codeDiv.textContent
+    updateFile(file)
+}
+
 addFile('index.html')
 setFile('index.html')
 addFile('style.css')
 addFile('main.js')
+
+codeDiv.onkeydown = e => {
+    grabFileFromEditor()
+    editorLineNums()
+    runFile('index.html')
+}
