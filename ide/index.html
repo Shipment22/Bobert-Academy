@@ -14,10 +14,26 @@
     <div id="wraper">
         <div id="sidebar">
             <div class="icons">
-
+                <button class="sidebar-button" onclick="openSidebarSection('files')">
+                    <img src="./img/files.png" alt="">
+                </button>
+                <button class="sidebar-button" onclick="openSidebarSection('extensions')">
+                    <img src="./img/addons.png" alt="">
+                </button>
+                <div class="bottom">
+                    <button class="sidebar-button">
+                        <img src="./img/settings.png" alt="">
+                    </button>
+                </div>
             </div>
             <div class="content">
-                
+                <div id="sidebar-files" class="open">
+                    <h4>files</h4>
+                    <div id="files"></div>
+                </div>
+                <div id="sidebar-extensions">
+                    <h4>extensions</h4>
+                </div>
             </div>
         </div>
 
@@ -27,16 +43,23 @@
                 <div class="scroll-wraper">
                     <div class="editor-line-nums"></div>
                 </div>
-            </div>
+                <div style="height: 50%; font-family: monospace; margin: 1ch;"><hr>Bobert</div>
+             </div>
         </div>
 
-        <div id="output-pane" class="pane">a
+        <div id="output-pane" class="pane">
             <iframe src="" frameborder="0" id="output"></iframe>
         </div>
     </div>
+
     <footer id="status-bar">
+       status bar stuff
+        <span class="right">
+            more status bar stuff
+        </span>
         <span id="time"></span>
     </footer>
-<script src="../editorLikeAce/editor.js"></script>
+
+    <script src="./bobert.js"></script>
 </body>
 </html>

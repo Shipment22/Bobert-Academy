@@ -3,6 +3,81 @@
   padding: 0;
 }
 
+body {
+  font-family: sans-serif;
+}
+
+#sidebar {
+  max-width: Min(15vw, 600px);
+}
+
+#sidebar .icons {
+  position: relative;
+  background: #333;
+  width: Clamp(2rem, 3vw, 100px);
+  height: 100%;
+  float: left;
+}
+
+#sidebar .icons .bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+#sidebar .icons .sidebar-button {
+  width: 100%;
+  padding: .2rem;
+  background: none;
+  border: none;
+}
+
+#sidebar .icons .sidebar-button img {
+  max-width: 100%;
+}
+
+#sidebar .icons .sidebar-button:hover {
+  cursor: pointer;
+  background: #fff1;
+}
+
+#sidebar .content {
+  background: #2a2a2a;
+  width: Clamp(8rem, 14vw, 400px);
+  height: 100%;
+}
+
+#sidebar .content > div {
+  display: none;
+}
+
+#sidebar .content > div.open {
+  display: block;
+}
+
+#sidebar .content #files {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#sidebar .content #files .file {
+  background: none;
+  border: none;
+  color: #fff;
+  line-height: 1.6em;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+#sidebar .content #files .file:hover {
+  cursor: pointer;
+  background: #fff1;
+}
+
 #wraper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10,33 +85,41 @@
   height: calc(100vh - 1.5rem);
 }
 
-#wraper #sidebar {
-  background: blue;
-  -webkit-box-flex: .7;
-      -ms-flex: .7;
-          flex: .7;
-}
-
 #wraper #editor-pane {
   position: relative;
-  -webkit-box-flex: 15;
-      -ms-flex: 15;
-          flex: 15;
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  height: 100%;
 }
 
 #wraper #editor-pane .editor {
   height: 100%;
+  background: #272822;
+}
+
+#wraper #editor-pane .editor hr {
+  color: #fff1;
+}
+
+#wraper #editor-pane .editor .editor-text:focus {
+  outline: none;
 }
 
 #wraper #output-pane {
-  background: pink;
-  -webkit-box-flex: 10;
-      -ms-flex: 10;
-          flex: 10;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
 }
 
 #status-bar {
-  background: red;
+  position: relative;
+  background: #151515;
   line-height: 1.5rem;
+}
+
+#status-bar .right {
+  position: absolute;
+  right: 0;
 }
 /*# sourceMappingURL=style.css.map */

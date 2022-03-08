@@ -41,12 +41,13 @@ draw = function () {
 }`;
 
 var thing = document.createElement("div");
-// thing.innerHTML = code;
+thing.innerHTML = code;
 thing.style.whiteSpace = "pre";
 thing.style.fontFamily = "monospace";
 thing.style.fontSize = '12px'
 thing.style.lineHeight = '20px'
 thing.style.backgroundColor = "rgb(39, 40, 34)";
+thing.style.borderRadius = "5px";
 thing.style.color = "white";
 thing.style.padding = "8px";
 thing.id = "myCode";
@@ -55,10 +56,10 @@ thing.contentEditable = true;
 thing.spellcheck = false;
 scrollyscroll.appendChild(thing);
 
-const codeDiv = document.getElementById("myCode");
+var codeDiv = document.getElementById("myCode");
 
 function highlight (contentDiv) {
-    try { var txt = contentDiv.innerText; } catch(e) { return; }
+    var txt = contentDiv.innerText;
     contentDiv.innerHTML = "";
     
     var allowedVarChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,_$";
@@ -102,7 +103,7 @@ function highlight (contentDiv) {
         var didString = false;
     
         // ---------- yellow ----------
-        if (is(currChar, '"') || is(currChar, "'") || is(currChar, "`")) {
+        if (is(currChar, '"') || is(currChar, "'")) {
             var s = document.createElement("span");
             s.innerText = currTok.slice(0, currTok.length - 1);
             s.style.color = clr;
@@ -360,11 +361,12 @@ function highlight (contentDiv) {
     }
 }
 
-// var startMS = Date.now();
-// highlight(codeDiv);
-// var endMS = Date.now();
 
-// document.getElementById("time").innerHTML = "It took " + (endMS - startMS) + " ms to highlight the code.";
+var startMS = Date.now();
+highlight(codeDiv);
+var endMS = Date.now();
+
+document.getElementById("time").innerHTML = "It took " + (endMS - startMS) + " ms to highlight the code.";
 
 function get_text_nodes_in(node) {
   var text_nodes = [];
@@ -404,21 +406,20 @@ function set_cursor(position, element) {
   selection.addRange(range);
 }
 
-
 function editorLineNums() {
     let lineNums = document.querySelector('.editor-line-nums')
     lineNums.style.lineHeight = '20px'
     
     let numOfLineNums = lineNums.innerHTML.split('<br>').length
-    let numOfLines = codeDiv.innerHTML.replaceAll(/<br>/g, '\n').split('\n').length
+    let numOfLines = codeDiv.innerHTML.split('<br>').length
 
     if (numOfLineNums > numOfLines) {
-        for (i = 0; i < numOfLineNums - (numOfLines - 1); i++) {
+        for (i = 0; i < numOfLineNums - numOfLines; i++) {
             lineNums.innerHTML = lineNums.innerHTML.replace(numOfLineNums-i+'<br>', '')
         }
         return
     }
-    for (i = numOfLineNums; i < numOfLines + 1; i ++) {
+    for (i = numOfLineNums; i < numOfLines; i ++) {
         lineNums.innerHTML += `${i}<br>`
     }
 }
@@ -430,40 +431,39 @@ setInterval(() => {
     keyUpTimer ++
 }, 50)
 
-// setInterval(highlight, 1000)
+setInterval(highlight, 1000)
 
-codeDiv.onkeydown = e => editorLineNums()
+codeDiv.onkeydown = function (e) {
+    if (keyUpTimer < 2 && !highlighting) return
+    else keyUpTimer = 0; highlighting = true
 
-// codeDiv.onkeyup = function (e) {
-//     if (keyUpTimer < 2 && !highlighting) return
-//     else keyUpTimer = 0; highlighting = true
+    if (e.key.replace(/[a-zA-Z'";:,.<>/?]/, '') !== '') {
+        editorLineNums()
+        return
+    }
 
-//     if (e.key.replace(/[a-zA-Z'";:,.<>/?]/, '') !== '') {
-//         return
-//     }
+    var range = window.getSelection().getRangeAt(0);
+    var end_node = range.endContainer;
+    var end = range.endOffset;
+    if (end_node !== this) {
+        var text_nodes = get_text_nodes_in(this);
+        for (var i = 0; i < text_nodes.length; ++i) {
+        if (text_nodes[i] === end_node) {
+            break;
+        }
+        end += text_nodes[i].length;
+        }
+    }
 
-//     var range = window.getSelection().getRangeAt(0);
-//     var end_node = range.endContainer;
-//     var end = range.endOffset;
-//     if (end_node !== this) {
-//         var text_nodes = get_text_nodes_in(this);
-//         for (var i = 0; i < text_nodes.length; ++i) {
-//         if (text_nodes[i] === end_node) {
-//             break;
-//         }
-//         end += text_nodes[i].length;
-//         }
-//     }
-
-//     var startMS = Date.now();
-//     highlight(codeDiv);
-//     var endMS = Date.now();
+    var startMS = Date.now();
+    highlight(codeDiv);
+    var endMS = Date.now();
     
-//     document.getElementById("time").innerHTML = "It took " + (endMS - startMS) + " ms to highlight the code.";
+    document.getElementById("time").innerHTML = "It took " + (endMS - startMS) + " ms to highlight the code.";
     
-//     set_cursor(end, this);
+    set_cursor(end, this);
 
-//     editorLineNums()
+    editorLineNums()
 
-//     highlighting = false
-// }
+    highlighting = false
+}
