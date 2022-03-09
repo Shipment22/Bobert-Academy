@@ -77,31 +77,63 @@ body
 
 
                 
-            
+.html_angle-bracket
+    color: #faa000
 
-            
+.html_comment
+    color: #dbd
+    font-style: italic
+
+.html_valid-tag
+    color: #fa0e
+
+.html_doctype
+    color: #fbd000
+    font-style: italic
+
+.html_html-doctype
+    color: #bad
+    font-style: italic
+
+.html_property
+    color: #bad
+    font-style: italic
+
+.html_value
+    color: #bdb
         
-
-
 #wraper
     display: flex
     height: calc(100vh - 1.5rem)
 
 
     #editor-pane
-        position: relative
         flex: 6
         height: 100%
+        background: #272822
 
         .editor
             height: 100%
-            background: #272822
 
-            hr
-                color: #fff1
+            .scroll-wraper
+                position: relative
+
+            .editor-text
+                position: absolute
+                top: 0
+                color: #fff0
+                caret-color: white
+                min-width: 100%
+                z-index: 5
 
             .editor-text:focus
                 outline: none
+
+            .editor-highlight
+                position: absolute
+                top: 0
+                background-color: rgb(39, 40, 34)
+                z-index: 1
 
     #output-pane
         flex: 5
