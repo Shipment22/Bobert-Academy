@@ -26,13 +26,129 @@ function highlight () {
 
     let rep
 
+
+
+
+            let validTags = [
+                'a',
+                'abbr',
+                'address',
+                'area',
+                'artacle',
+                'aside',
+                'audio',
+                'b',
+                'base',
+                'bdi',
+                'bdo',
+                'blockquote',
+                'body',
+                'br',
+                'button',
+                'canvas',
+                'cite',
+                'code',
+                'col',
+                'colgroup',
+                'data',
+                'datalist',
+                'dd',
+                'del',
+                'details',
+                'dfn',
+                'dialog',
+                'div',
+                'div',
+                'dl',
+                'dt',
+                'em',
+                'embed',
+                'feildset',
+                'figcaption',
+                'figure',
+                'footer',
+                'form',
+                'h1',
+                'h2',
+                'h3',
+                'h4',
+                'h5',
+                'h5',
+                'h6',
+                'head',
+                'header',
+                'hr',
+                'html',
+                'i',
+                'iframe',
+                'img',
+                'input',
+                'ins',
+                'kbd',
+                'label',
+                'legend',
+                'li',
+                'link',
+                'main',
+                'map',
+                'mark',
+                'meta',
+                'nav',
+                'noscript',
+                'object',
+                'ol',
+                'optgroup',
+                'option',
+                'output',
+                'p',
+                'param',
+                'picture',
+                'pre',
+                'progress',
+                'q',
+                'rp',
+                'rt',
+                'ruby',
+                's',
+                'samp',
+                'script',
+                'select',
+                'small',
+                'source',
+                'span',
+                'strong',
+                'style',
+                'sub',
+                'summary',
+                'sup',
+                'svg',
+                'table',
+                'tbody',
+                'td',
+                'template',
+                'textarea',
+                'tfoot',
+                'th',
+                'thead',
+                'time',
+                'title',
+                'tr',
+                'track',
+                'u',
+                'ul',
+                'var',
+                'video',
+                'wbr'
+            ]
+
     switch(getFile(fileEditing).type) {
         case 'html':
 
-
             let valMatch = txt.match(/['"][^"']+['"]/gi)
-            for (o of valMatch) {
-                txt = txt.replace(o, `<span class="html_value">${o}</span>`)
+            if (valMatch !== null) {
+                for (o of valMatch) {
+                    txt = txt.replace(o, `<span class="html_value">${o}</span>`)
+                }
             }
 
             let properties = [
@@ -209,124 +325,14 @@ function highlight () {
                 if (oMatches === null) continue
                 for (q of oMatches) {
                     q = q.replace('<span class="html_value">', '')
-                    txt = txt.replace(q, `<span class="html_property">${q}</span><span class="html_value">`)
+                    txt = txt.replace(q, `<span class="html_property">${q}</span>`)
                 }
                 // txt = txt.replace(new RegExp(`&lt;${o} `, 'gi'), `<span class="html_valid-tag">&lt;${o}</span> `)
                 // txt = txt.replace(new RegExp(`&lt;${o}&gt;`, 'gi'), `<span class="html_valid-tag">&lt;${o}</span>&gt;`)
                 // txt = txt.replace(new RegExp(`/${o}&gt;`, 'gi'), `<span class="html_valid-tag">/${o}</span>&gt;`)
             }
 
-            let validTags = [
-                'a',
-                'abbr',
-                'address',
-                'area',
-                'artacle',
-                'aside',
-                'audio',
-                'b',
-                'base',
-                'bdi',
-                'bdo',
-                'blockquote',
-                'body',
-                'br',
-                'button',
-                'canvas',
-                'cite',
-                'code',
-                'col',
-                'colgroup',
-                'data',
-                'datalist',
-                'dd',
-                'del',
-                'details',
-                'dfn',
-                'dialog',
-                'div',
-                'div',
-                'dl',
-                'dt',
-                'em',
-                'embed',
-                'feildset',
-                'figcaption',
-                'figure',
-                'footer',
-                'form',
-                'h1',
-                'h2',
-                'h3',
-                'h4',
-                'h5',
-                'h5',
-                'h6',
-                'head',
-                'header',
-                'hr',
-                'html',
-                'i',
-                'iframe',
-                'img',
-                'input',
-                'ins',
-                'kbd',
-                'label',
-                'legend',
-                'li',
-                'link',
-                'main',
-                'map',
-                'mark',
-                'meta',
-                'nav',
-                'noscript',
-                'object',
-                'ol',
-                'optgroup',
-                'option',
-                'output',
-                'p',
-                'param',
-                'picture',
-                'pre',
-                'progress',
-                'q',
-                'rp',
-                'rt',
-                'ruby',
-                's',
-                'samp',
-                'script',
-                'select',
-                'small',
-                'source',
-                'span',
-                'strong',
-                'style',
-                'sub',
-                'summary',
-                'sup',
-                'svg',
-                'table',
-                'tbody',
-                'td',
-                'template',
-                'textarea',
-                'tfoot',
-                'th',
-                'thead',
-                'time',
-                'title',
-                'tr',
-                'track',
-                'u',
-                'ul',
-                'var',
-                'video',
-                'wbr'
-            ]
+
 
             for (o of validTags) {
                 let oMatches = txt.match(RegExp(`(&lt;|/)${o}(\\s|&gt;)`, 'gi'))
@@ -362,6 +368,146 @@ function highlight () {
                     '<span class="html_doctype">!DOCTYPE</span> <span class="html_html-doctype">html</span>'
                 ],
             ]
+
+            break
+        case 'css':
+            txt = txt.replace(/>/g, '> ')
+            for (o of validTags) {
+                let m = txt.match(new RegExp(`[^<]${o}[\\s,{]`, 'gi'))
+                txt = txt.replace(m, `<span class="css_tag">${m}</span>`)
+            }
+
+            // rep = [
+            //     [
+            //         new RegExp('/*', 'g'),
+            //         '<span class="css_comment">/*'
+            //     ],
+            //     [
+            //         new RegExp('*/', 'g'),
+            //         '*/</span>'
+            //     ],
+            // ]
+
+            break
+        case 'js':
+                let comments
+
+                if (comments = txt.match(/\/\/[^\n]+\n/g)) {
+                    for (comment of comments) {
+                        txt = txt.replace(comment, `<span class="js_comment">${comment}</span>`)
+                    }
+                }
+
+                let specialComments = [
+                    'red',
+                    'orange',
+                    'yellow',
+                    'green',
+                    'blue',
+                    'purple',
+                    'pink',
+                ]
+
+                let specialCommentTriggerChars = [
+                    '!',
+                    '.',
+                    '#',
+                    '$',
+                    '?',
+                    '~',
+                    '^',
+                ]
+
+                for (i in specialComments) {
+                    comments = txt.match(new RegExp(`\/\/${'\\' + specialCommentTriggerChars[i]}[^\n]+\n`, 'g'))
+                    if (!comments) continue
+                    for (comment of comments) {
+                        txt = txt.replace(comment, `<span class="js_comment_${specialComments[i]}">${comment}</span>`)
+                    }
+                }
+
+                if (bobertComments = txt.match(/\/\/bobert[^\n]+\n/gi)) {
+                    for (comment of bobertComments) {
+                        txt = txt.replace(comment, `<span class="js_comment_bobert">${comment}</span>`)
+                    }
+                }
+                if (bobertComments = txt.match(/\/\/[\!\.\#\$\?\~\^]bobert[^\n]+\n/gi)) {
+                    for (comment of bobertComments) {
+                        txt = txt.replace(comment, `<span class="js_comment_bobert">${comment}</span>`)
+                    }
+                }
+
+                let keywords_declaration = [
+                    'let',
+                    'var',
+                    'const',
+                    'function',
+                    'private',
+                    'public',
+                    'static'
+                ]
+
+                for (o of keywords_declaration) {
+                    txt = txt.replace(new RegExp(o, 'g'), `<span class="js_keyword_declaration">${o}</span>`)
+                }
+
+                let keywords_type = [
+                    'null',
+                    'undefined',
+                    'true',
+                    'false'
+                ]
+
+                for (o of keywords_type) {
+                    txt = txt.replace(new RegExp(o, 'g'), `<span class="js_keyword_type">${o}</span>`)
+                }
+
+                let keywords_other = [
+                    'this',
+                    'if',
+                    'for',
+                    'of',
+                    'in',
+                    'do',
+                    'with',
+                    'try',
+                    'catch',
+                    'break',
+                    'return',
+                    'continue',
+                    'switch',
+                    'with',
+                    'import',
+                    'export',
+                    'while',
+                    'default',
+                    'delete',
+                    'debugger',
+                    'new',
+                    'typeof',
+                    'implements',
+                    'void',
+                    'await',
+                    'case',
+                    'throw',
+                    'yield',
+                    'protected',
+                    'else',
+                    'arguments',
+                    'finally',
+                    'instanceof',
+                    'goto'
+                ]
+
+                for (o of keywords_other) {
+                    txt = txt.replace(new RegExp(`[\\s]${o}[\\s]`, 'g'), `<span class="js_keyword_other">${o}</span>`)
+                }
+
+                let functionCalls = txt.match(/[a-z]+\(/gi)
+
+                for (o of functionCalls) {
+                    txt = txt.replace(o, `<span class="js_function_call">${o.replace('(', '')}</span>(`)
+                }
 
             break
         default:
@@ -448,7 +594,25 @@ body {
     background-color: #2b2b2b;
     color: #eee;
 }`
-            break
+                break
+            case 'js':
+                content = `
+// comment
+//! red comment
+//. orange comment
+//# yellow comment
+//$ green comment
+//? blue comment
+//~ purple comment
+//^ pink comment
+//BOBERT bobert comment
+//.BOBERT orange bobert comment
+
+function hello() {
+    console.log('hello')
+}
+`
+                break
             default:
                 content = '\n\n\n'
                 break
@@ -527,7 +691,6 @@ function grabFileFromEditor() {
 }
 
 addFile('index.html')
-setFile('index.html')
 
 var startMS = Date.now();
 highlight(codeDiv);
@@ -537,6 +700,7 @@ document.getElementById("time").innerHTML = "It took " + (endMS - startMS) + " m
 
 addFile('style.css')
 addFile('main.js')
+setFile('main.js')
 
 document.getElementById('new-file').onclick = () => {
     let name = prompt('file name')
@@ -545,7 +709,21 @@ document.getElementById('new-file').onclick = () => {
 
 setInterval(highlight, 1000)
 
-codeDiv.onkeydown = codeDiv.onkeyup = function (e) {
+function insertTextAtCaret(text) {
+    var sel, range;
+    if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+            range.insertNode( document.createTextNode(text) );
+        }
+    } else if (document.selection && document.selection.createRange) {
+        document.selection.createRange().text = text;
+    }
+}
+
+codeDiv.onkeyup = codeDiv.onkeydown = e => {
 
     const startMS = Date.now();
     highlight(codeDiv)
@@ -558,4 +736,14 @@ codeDiv.onkeydown = codeDiv.onkeyup = function (e) {
     runFile('index.html')
 
     highlighting = false
+
+    if (e.keyCode === 9) {
+        insertTextAtCaret(String.fromCharCode(9))
+        let rightArrowPress = new KeyboardEvent('keypress', { key: 'ArrowRight' })
+        document.body.dispatchEvent(rightArrowPress)
+        return false
+    } 
+    // else if (e.keyCode === 13) {
+    //     insertTextAtCaret(String.fromCharCode(9))
+    // }
 }
