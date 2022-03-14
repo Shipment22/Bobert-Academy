@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bobert IDE</title>
     <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="../editorLikeAce/style.css">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./ace/theme-monokai.css">
     <link rel="shortcut icon" href="../img/bobert.ico" type="image/x-icon">
 </head>
 <body>
@@ -29,9 +29,13 @@
             <div class="content">
                 <div id="sidebar-files" class="open">
                     <h4>files</h4>
-                    <div id="files"></div>
+                    <div id="tabs">
+                        <button class="new-tab tab" data-tab="index.html">index.html</button>
+                        <button class="new-tab tab" data-tab="sketch.js">sketch.js</button>
+                        <button class="new-tab tab" data-tab="style.css">style.css</button>
+                    </div>
                     <div class="add">
-                        <button id="new-file">
+                        <button id="new-file" onclick="addTab(prompt('File Name:'))">
                             <img src="./img/newfile.png" alt="new file">
                         </button>
                         <button id="new-folder">
@@ -46,13 +50,7 @@
         </div>
 
         <div id="editor-pane" class="pane">
-            <div class="editor">
-                <div class="scroll-wraper">
-                    <div class="editor-line-nums"></div>
-                    <div class="code-container"></div>
-                </div>
-                <div style="height: 50%; font-family: monospace; margin: 1ch;"></div>
-             </div>
+            <div id="editor"></div>
         </div>
 
         <div id="output-pane" class="pane">
@@ -61,11 +59,17 @@
     </div>
 
     <footer id="status-bar">
-        <span id="time"></span>
+        <span id="caret-pos"></span>
         <span class="right">
+            <label for="auto-update">auto update</label>
+            <input id="auto-update-checkbox" name="auto-update" type="checkbox" checked>
+            <button id="stop-button" onclick="stopOutput()">stop</button>
+            <button id="run-button" onclick="startOutput()">run</button>
         </span>
     </footer>
 
+    <script type="text/javascript" src="./ace/ace.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./ace/ext-language_tools.js" charset="utf-8"></script>
     <script src="./bobert.js"></script>
 </body>
 </html>

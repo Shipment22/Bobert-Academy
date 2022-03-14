@@ -6,7 +6,8 @@ $selection-col: orange
     margin: 0
     padding: 0
 
-body
+html, body
+    overflow: hidden
     font-family: sans-serif
 
 ::selection
@@ -51,11 +52,11 @@ body
             position: relative
             width: Clamp(6rem, 10vw, 400px) 
 
-        #files
+        #tabs
             display: flex
             flex-direction: column
 
-            .file
+            .tab
                 background: none
                 border: none
                 color: #fff
@@ -63,7 +64,7 @@ body
                 text-align: left
                 padding-left: 1rem
 
-            .file:hover
+            .tab:hover
                 cursor: pointer
                 background: #fff1
 
@@ -82,88 +83,23 @@ body
             button:hover
                 cursor: pointer
                 background: #fff1
-
-
-.html_angle-bracket
-    color: #faa000
-
-.html_valid-tag
-    color: #fa0e
-
-.html_doctype
-    color: #fbd000
-    font-style: italic
-
-.html_html-doctype
-    color: #bad
-    font-style: italic
-
-.html_property
-    color: #bad
-    font-style: italic
-
-.html_value
-    color: #bdb
-
-.html_comment
-    color: #dbd!important
-    font-style: italic
-    .html_valid-tag, .html_property, .html_value, .html_angle-bracket
-        color: #dbd!important
-        font-style: italic
-
-.css_tag
-    color: #fa0e
-
-.css_comment
-    color: #dbd!important
-    font-style: italic
-
-.js_comment 
-    color: #ede
-.js_comment_red
-    color: #e06
-.js_comment_orange
-    color: #f79d02
-.js_comment_yellow
-    color: #dda
-.js_comment_green
-    color: #0d7
-.js_comment_blue
-    color: #09e
-.js_comment_purple
-    color: #bad
-.js_comment_pink
-    color: #dab
-.js_comment_bobert
-    position: relative
-.js_comment_bobert::after
-    content: ''
-    position: absolute
-    top: 0
-    bottom: 0
-    left: 0
-    right: -2em
-    background: url('../img/bobert.png') right / contain no-repeat
-.js_keyword_declaration
-    color: #f79d02
-.js_keyword_type
-    color: red
-.js_keyword_other
-    color: blue
-.js_function_call
-    color: #bad
-
         
 #wraper
     display: flex
-    height: calc(100vh - 1.5rem)
-
+    height: calc(100vh - 1.3rem)
 
     #editor-pane
         flex: 6
         height: 100%
         background: #272822
+        position: relative
+
+        #editor
+            position: absolute
+            top: 0px
+            bottom: 0px
+            left: 0px
+            right: 0px
 
         .editor
             height: 100%
@@ -198,8 +134,15 @@ body
 #status-bar
     position: relative
     background: #151515
-    line-height: 1.5rem
+    line-height: 1.2rem
+    font-size: 0.8rem
 
     .right
         position: absolute
         right: 0
+
+#stop-button, #run-button
+    background: none
+    color: orange
+    border: none
+    cursor: pointer
