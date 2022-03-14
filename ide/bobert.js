@@ -193,6 +193,19 @@ function addTab(title) {
     }, 10);
 }
 
+function openSidebarSection(section) {
+    try {
+        const sections = document.querySelectorAll('#sidebar .content > div')
+        for (i in sections) {
+            if (sections[i].id !== 'sidebar-' + section || sections[i].classList.contains('open')) {
+                sections[i].classList.remove('open')
+            } else {
+                sections[i].classList.add('open')
+            }
+        }
+    } catch(e) {}
+}
+
 const output = document.querySelector('#output');
 
 function stopOutput() {
