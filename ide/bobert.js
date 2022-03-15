@@ -253,14 +253,33 @@ function startOutput(file = 'index.html') {
     }, 1000)
 }
 
-window.onclick = window.onkeydown = () => {
+function updateStatusbar() {
     const caretPos = editor.getCursorPosition()
     document.getElementById('caret-pos').innerHTML = `Line ${caretPos.row}, Column ${caretPos.column}`
+}
+
+window.onclick = updateStatusbar
+
+window.onkeydown = e => {
+    updateStatusbar()
+
+    
+    if(e.ctrlKey && e.keyCode == 78) {
+        let name = prompt('File name:')
+        if (name) addTab(name)
+        e.preventDefault(); 
+    }
+    if(e.ctrlKey && e.keyCode == 83) { 
+        // save code
+        e.preventDefault(); 
+    }
 }
 
 let oldLength = editor.getValue().length,
 outputTimer = Date.now()
 const autoUpdateCheckbox = document.getElementById('auto-update-checkbox')
+
+let reloadPromptInitiated = false
 
 editor.on('change', () => {
     let newLength = editor.getValue().length
@@ -276,6 +295,18 @@ editor.on('change', () => {
                 startOutput()
             }
         }, 700)
+    }
+
+    if (!reloadPromptInitiated) {
+        reloadPromptInitiated = true
+        // prevent window/tab from being closed withour confirmation
+        window.onbeforeunload = function (e) {
+            // Cancel the event
+            e.preventDefault();
+
+            // Chrome requires returnValue to be set
+            e.returnValue = 'Please confirm that you want to leave — information you’ve entered may not be saved.';
+        };
     }
 })
 

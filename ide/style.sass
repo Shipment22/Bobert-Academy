@@ -46,11 +46,16 @@ html, body
         margin-left: Clamp(2rem, 3vw, 100px)
 
         > div
-            display: none
-        > div.open
-            display: block
             position: relative
-            width: Clamp(6rem, 10vw, 400px) 
+            width: 0
+            height: 0
+            transform: scaleX(0)
+            transform-origin: left
+            transition: transform 250ms ease-in, width 250ms ease-in, height 250ms ease-in
+        > div.open
+            width: Clamp(6rem, 10vw, 400px)
+            transform: scaleX(1)
+            height: auto
 
         #tabs
             display: flex
@@ -67,6 +72,9 @@ html, body
             .tab:hover
                 cursor: pointer
                 background: #fff1
+
+            .selected
+                color: blue
 
         .add
             position: absolute
