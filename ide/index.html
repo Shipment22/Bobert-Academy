@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bobert IDE</title>
     <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" href="../css/cssremedy/css/remedy.css">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" type="text/css" href="./ace/theme-monokai.css">
     <link rel="shortcut icon" href="../img/bobert.ico" type="image/x-icon">
@@ -59,7 +60,7 @@
     </div>
 
     <footer id="status-bar">
-        <span id="caret-pos"></span>
+        <span id="caret-pos">Line _ Column _</span>
         <span class="right">
             <label for="auto-update">auto update</label>
             <input id="auto-update-checkbox" name="auto-update" type="checkbox" checked>
@@ -67,6 +68,72 @@
             <button id="run-button" onclick="startOutput()">run</button>
         </span>
     </footer>
+
+    <div id="model-wrapper">
+        <div id="model-background"></div>
+        <div id="model">
+            <div class="close-model">
+                x
+            </div>
+
+            <div class="sidebar"></div>
+            <div class="content"></div>
+            <!-- <div class="settings section">
+                <nav class="sidebar">
+                    <a href="javascript:openModel('settings', 'general')">
+                        <img src="../img/bobert.ico" alt="bobert icon">
+                        general
+                    </a>
+                    <a href="javascript:openModel('settings', 'something')">
+                        <img src="../img/bobert.ico" alt="bobert icon">
+                        something
+                    </a>
+                    <a href="javascript:openModel('settings', 'other')">
+                        <img src="../img/bobert.ico" alt="bobert icon">
+                        other
+                    </a>
+                </nav>
+                <div class="content">
+                    <div class="page general">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea obcaecati vero amet nam debitis tempore eaque nisi voluptatem deserunt quidem! Illo perspiciatis nisi consectetur maiores, sint ipsam autem dolores cupiditate!
+                    </div>
+                    <div class="page something">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus voluptatibus sit cumque praesentium doloremque nulla labore numquam magni voluptate aliquid?
+                    </div>
+                    <div class="page other">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, sit. Perferendis, tenetur nihil odio beatae voluptate labore facere maxime aut, nostrum recusandae necessitatibus accusamus neque!
+                    </div>
+                </div>
+            </div>
+            <div class="not-settings section">
+                <nav class="sidebar">
+                    <a href="#">
+                        <img src="../img/bobert.ico" alt="bobert icon">
+                        general
+                    </a>
+                    <a href="#">
+                        <img src="../img/bobert.ico" alt="bobert icon">
+                        something
+                    </a>
+                    <a href="#">
+                        <img src="../img/bobert.ico" alt="bobert icon">
+                        other
+                    </a>
+                </nav> 
+                <div class="content">
+                    <div class="page general">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea obcaecati vero amet nam debitis tempore eaque nisi voluptatem deserunt quidem! Illo perspiciatis nisi consectetur maiores, sint ipsam autem dolores cupiditate!
+                    </div>
+                    <div class="page something">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus voluptatibus sit cumque praesentium doloremque nulla labore numquam magni voluptate aliquid?
+                    </div>
+                    <div class="page other">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, sit. Perferendis, tenetur nihil odio beatae voluptate labore facere maxime aut, nostrum recusandae necessitatibus accusamus neque!
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
 
     <script type="text/javascript" src="./ace/ace.js" charset="utf-8"></script>
     <script type="text/javascript" src="./ace/ext-language_tools.js" charset="utf-8"></script>

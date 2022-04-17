@@ -1,3 +1,7 @@
+function $(q) {
+    return document.querySelectorAll(q)
+}
+
 const editor = ace.edit("editor");
 const consoleBody = document.querySelector('#console-body');
 
@@ -310,3 +314,77 @@ editor.on('change', () => {
     }
 })
 
+
+// model stuff
+document.querySelector('.bottom > button:nth-child(1)').onclick = e => openModel('settings', 'general')
+
+const modelData = {
+    settings: [
+        {
+            title: 'general',
+            icon: '../img/bobert.ico',
+            content: 'never gonna give you up'
+        },
+        {
+            title: 'not general',
+            icon: '../img/bobert.ico',
+            content: 'asdlflsdfljslfj'
+        }
+    ],
+}
+
+const modelSidebar = document.querySelector('#model .sidebar')
+const modelContent = document.querySelector('#model .content')
+let modelSection = '', modelPage = ''
+function openModel(section, page) {
+    document.getElementById('model-wrapper').style.display = 'flex'
+
+    console.log(section, page)
+
+    let sectionData = modelData[section]
+    modelSidebar.innerHTML = ''
+    modelContent.innerHTML = ''
+
+    for (let i in sectionData) {
+        if (sectionData[i].title === page) {
+            modelContent.innerHTML = sectionData[i].content
+        }
+
+        let sidebarNavButton = document.createElement('button')
+        let btnImg = document.createElement('img')
+        btnImg.src = sectionData[i].icon
+        sidebarNavButton.appendChild(btnImg)
+        sidebarNavButton.innerHTML += sectionData[i].title
+        sidebarNavButton.onclick = sectionData[i].onclick || 
+        new Function(`openModel('${section}', '${sectionData[i].title}')`)
+        modelSidebar.appendChild(sidebarNavButton)
+    }
+    // for (o of $('#model > .section')) {
+    //     if (o.classList.contains(section)) {
+    //         o.style.display = 'flex'
+    //         for (j of $(`#model > .${section} .page`)) {
+    //             if (j.classList.contains(page)) {
+    //                 j.style.display = ''
+    //             } else {
+    //                 j.style.display = 'none'
+    //             }
+    //         }
+    //     } else {
+    //         o.style.display = 'none'
+    //     }
+    // }
+
+    modelSection = section
+    modelPage = page
+}
+// openModel('settings', 'general')
+
+function closeModel() {
+    document.getElementById('model-wrapper').style.display = 'none'
+}
+closeModel()
+
+for (o of document.querySelectorAll('.close-model')) {
+    o.onclick = e => closeModel()
+}
+document.getElementById('model-background').onclick = e => closeModel()
