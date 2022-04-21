@@ -152,7 +152,7 @@ html, body {
 #status-bar {
   position: relative;
   background: #151515;
-  line-height: 1.2rem;
+  line-height: 1.3rem;
   font-size: 0.8rem;
 }
 #status-bar .right {
@@ -160,11 +160,27 @@ html, body {
   right: 0;
 }
 
-#stop-button, #run-button {
-  background: none;
-  color: orange;
+#stop-button, #run-button, #save-button {
   border: none;
+  border-radius: 0.2rem;
+  padding: 0.05rem;
+  margin: 0.05rem;
+  margin-right: 0.1rem;
   cursor: pointer;
+}
+
+#stop-button, #run-button {
+  background: rgba(0, 0, 0, 0.5333333333);
+  color: orangered;
+}
+
+#save-button {
+  background-color: orangered;
+  color: #fff;
+}
+
+#save-button:hover {
+  background-color: orange;
 }
 
 #model-wrapper {
@@ -218,6 +234,7 @@ html, body {
   word-wrap: break-word;
 }
 #model .sidebar button {
+  width: 4rem;
   background-color: #2b2b2b;
   border: none;
   border-radius: 0.3rem;

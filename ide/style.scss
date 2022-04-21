@@ -176,7 +176,7 @@ html, body {
 #status-bar {
     position: relative;
     background: #151515;
-    line-height: 1.2rem;
+    line-height: 1.3rem;
     font-size: 0.8rem;
 
     .right {
@@ -185,11 +185,27 @@ html, body {
     }
 }
 
-#stop-button, #run-button {
-    background: none;
-    color: orange;
+#stop-button, #run-button, #save-button {
     border: none;
+    border-radius: .2rem;
+    padding: .05rem;
+    margin: .05rem;
+    margin-right: .1rem;
     cursor: pointer;
+}
+
+#stop-button, #run-button {
+    background: #0008;
+    color: orangered;
+}
+
+#save-button {
+    background-color: orangered;
+    color: #fff;
+}
+
+#save-button:hover {
+    background-color: orange;
 }
 
 #model-wrapper {
@@ -258,6 +274,7 @@ html, body {
         word-wrap: break-word;
 
         button {
+            width: 4rem;
             background-color: #2b2b2b;
             border: none;
             border-radius: .3rem;
