@@ -331,6 +331,28 @@ const modelData = {
             content: 'asdlflsdfljslfj'
         }
     ],
+    save: [
+        {
+            title: 'database',
+            icon: '../img/bobert.ico',
+            content: 'the database doesn\'t exist yet lol'
+        },
+        {
+            title: 'download json',
+            icon: '../img/bobert.ico',
+            content: 'one sec not implemented atm but it will be very very soon'
+        },
+        {
+            title: 'download as zip',
+            icon: '../img/bobert.ico',
+            content: 'not implemented'
+        },
+        {
+            title: 'download as single html file',
+            icon: '../img/bobert.ico',
+            content: 'also not implemented'
+        }
+    ]
 }
 
 const modelSidebar = document.querySelector('#model .sidebar')
@@ -359,20 +381,6 @@ function openModel(section, page) {
         new Function(`openModel('${section}', '${sectionData[i].title}')`)
         modelSidebar.appendChild(sidebarNavButton)
     }
-    // for (o of $('#model > .section')) {
-    //     if (o.classList.contains(section)) {
-    //         o.style.display = 'flex'
-    //         for (j of $(`#model > .${section} .page`)) {
-    //             if (j.classList.contains(page)) {
-    //                 j.style.display = ''
-    //             } else {
-    //                 j.style.display = 'none'
-    //             }
-    //         }
-    //     } else {
-    //         o.style.display = 'none'
-    //     }
-    // }
 
     modelSection = section
     modelPage = page
@@ -388,3 +396,7 @@ for (o of document.querySelectorAll('.close-model')) {
     o.onclick = e => closeModel()
 }
 document.getElementById('model-background').onclick = e => closeModel()
+
+function save(type) {
+    
+}
