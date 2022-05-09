@@ -5,25 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bobert IDE</title>
-    <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="../css/cssremedy/css/remedy.css">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" type="text/css" href="./ace/theme-monokai.css">
-    <link rel="shortcut icon" href="../img/bobert.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/all.css">
+    <link rel="stylesheet" href="/css/cssremedy/css/remedy.css">
+    <link rel="stylesheet" href="/css/ide/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/ace/theme-monokai.css">
+    <link rel="shortcut icon" href="/assets/bobert.ico" type="image/x-icon">
 </head>
 <body>
     <div id="wraper">
         <div id="sidebar">
             <div class="icons">
                 <button class="sidebar-button" onclick="openSidebarSection('files')">
-                    <img src="./img/files.png" alt="">
+                    <img src="/assets/ide/files.png" alt="">
                 </button>
                 <button class="sidebar-button" onclick="openSidebarSection('extensions')">
-                    <img src="./img/addons.png" alt="">
+                    <img src="/assets/ide/addons.png" alt="">
                 </button>
                 <div class="bottom">
                     <button class="sidebar-button">
-                        <img src="./img/settings.png" alt="">
+                        <img src="/assets/ide//settings.png" alt="">
                     </button>
                 </div>
             </div>
@@ -37,10 +37,10 @@
                     </div>
                     <div class="add">
                         <button id="new-file" onclick="addTab(prompt('File Name:'))">
-                            <img src="./img/newfile.png" alt="new file">
+                            <img src="/assets/ide/newfile.png" alt="new file">
                         </button>
                         <button id="new-folder">
-                            <img src="./img/new-folder.png" alt="new folder">
+                            <img src="/assets/ide/new-folder.png" alt="new folder">
                         </button>
                     </div>
                 </div>
@@ -83,8 +83,8 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="./ace/ace.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./ace/ext-language_tools.js" charset="utf-8"></script>
-    <script src="./bobert.js"></script>
+    <script type="text/javascript" src="/js/ace/ace.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/ace/ext-language_tools.js" charset="utf-8"></script>
+    <script src="/js/ide/ide.js"></script>
 </body>
 </html>
