@@ -11,7 +11,7 @@ $orange: #FAA000;
 $green: #9CB53A;
 $background-green: #4B823C;
 $background-blue: #1F2835;
-$background-blue2: #2D4B75;
+$background-blue2: #092B5A;
 $html-orange: #F28330;
 $css-blue: #224DE1;
 $javascript-yellow: #E6D02D;
@@ -24,10 +24,11 @@ $javascript-yellow: #E6D02D;
     color: $orange;
 }
 
-body {
+html, body {
     background: $bg;
     color: $col;
     font-family: 'DejaVu Sans', 'Helvetica', sans-serif;
+    line-height: 1.5rem;
 }
 
 .header {
@@ -52,6 +53,7 @@ body {
 }
 
 .main {
+    min-height: 100vh;
     margin-top: $header-height;
 }
 
@@ -91,6 +93,39 @@ body {
     width: $header-icon-size!important;
 }
 
+.footer {
+    background: $background-blue2;
+    gap: 2rem;
+    column-width: 150px;
+    column-count: 4;
+    padding-block: 3rem;
+    padding-inline: 15%;
+
+    h1 {
+        font-size: 1.2rem;
+        color: $orange;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    ul {
+        list-style: none;
+        margin-inline: 0;
+        margin-block: 1rem;
+        padding-left: 1rem;
+    }
+
+    a {
+        color: $green;
+        text-decoration: none;
+
+        img {
+            width: 1rem;
+            display: inline;
+        }
+    }
+}
+
 @media screen and (max-width: 950px) {
     .large-screen {
         display: none;
@@ -104,6 +139,9 @@ body {
 
     .small-screen {
         display: none;
+    }
+
+    .footer {
     }
 }
 
