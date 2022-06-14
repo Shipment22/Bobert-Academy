@@ -1,0 +1,35 @@
+body {
+    min-height: 200vh;
+}
+
+.banner {
+    background-position: 0 75vh;
+    background-size: 100%;
+    background-attachment: fixed;
+    min-height: 300px;
+    display: grid;
+    grid-auto-flow: column;
+    padding: 100px;
+    padding-inline: 30vw;
+}
+
+.banner > *{
+    align-items: center;
+}
+
+.profile-avatar-container {
+    background: #333;
+    width: 100px;
+    padding: .5rem;
+    border-radius: 50%;
+    display: grid;
+}
+
+.profile-avatar {
+    width: 100px;
+}
+
+.profile-displayname, .profile-username-uid {
+    padding-top: calc(50px - 1rem);
+    text-shadow: 0 0 2px #000;
+}
