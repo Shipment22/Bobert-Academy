@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=profile.displayname%> - BobertAcademy</title>
+    <link rel="stylesheet" href="/css/cssremedy/css/remedy.css">
+    <link rel="stylesheet" href="/css/all.css">
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <div class="header-wraper">
+        <header class="header">
+            <div class="bobert-logo">
+                <a href="/">
+                    <img src="/assets/bobert.ico" alt="BobertAcademy favicon" class="header-icon">
+                    <div class="large-screen">
+                        <span class="orange">Bobert</span>
+                        <span class="green">Academy</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <a href="#" class="header-link">
+                    <span class="large-screen">Tutorials</span>
+                    <img src="/assets/tutorials.png" alt="tutorials icon" class="small-screen header-icon">
+                </a>
+                <a href="#" class="header-link">
+                    <span class="large-screen">Refrences</span>
+                    <img src="/assets/references.png" alt="refrences icon" class="small-screen header-icon">
+                </a>
+                <a href="#" class="header-link">
+                    <span class="large-screen">Browse</span>
+                    <img src="/assets/browse-programs.png" alt="browse icon" class="small-screen header-icon">
+                </a>
+                <a href="#" class="header-link">
+                    <span class="large-screen">Ide</span>
+                    <img src="/assets/bobert-ide.png" alt="bobert ide icon" class="small-screen header-icon">
+                </a>
+                <a href="#" class="header-link">
+                    <span class="large-screen">Search</span>
+                    <img src="/assets/search.png" alt="search icon" class="small-screen header-icon">
+                </a>
+            </nav>
+            <div class="notif-menu">
+                <span class="large-screen">notifications</span>
+                <img src="/assets/notifications.png" alt="notifications icon" class="small-screen header-icon">
+            </div>                                                                                                                                                                                                                   
+            <div class="user-menu">
+                <a href="#">
+                    <div class="large-screen"><%=account.displayname%></div>
+                    <img src="/assets/bobert.png" alt="user menu image" class="header-icon">
+                </a>
+            </div>
+        </header>
+    </div>
+    <main class="main">
+        <section class="banner" aria-label="profile banner" style="background-image: url('<%=profile.background%>');">
+            <div class="profile-avatar-container">
+                <img src="<%=profile.avatar%>" alt="user avatar" class="profile-avatar">
+            </div>
+            <div class="profile-displayname"><%=profile.displayname%></div>
+            <div class="profile-username-uid">@<%=profile.username%> / @<%=profile.uid%></div>
+        </section>
+    </main>
+    <footer class="footer">
+
+    </footer>
+</body>
+</html>
