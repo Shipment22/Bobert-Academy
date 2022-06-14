@@ -1,0 +1,154 @@
+$bg: #222;
+$col: #eee;
+$selection-bg: #000;
+$selection-col: orange;
+$link-col: orange;
+$feature-hover-bg: #3335;
+$footer-bg: #333;
+$header-height: clamp(2rem, 2.5vw, 3rem);
+$header-icon-size: calc($header-height * .9);
+$orange: #FAA000;
+$green: #9CB53A;
+$background-green: #4B823C;
+$background-blue: #1F2835;
+$background-blue2: #2D4B75;
+$html-orange: #F28330;
+$css-blue: #224DE1;
+$javascript-yellow: #E6D02D;
+
+.green {
+    color: $green;
+}
+
+.orange {
+    color: $orange;
+}
+
+body {
+    background: $bg;
+    color: $col;
+    font-family: 'DejaVu Sans', 'Helvetica', sans-serif;
+}
+
+.header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: $header-height;
+        background-color: #1F2835;
+        box-shadow: 0 7px 10px #0003;
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: auto 1fr auto auto;
+        gap: .5rem;
+        align-items: center;
+        padding-inline: .5rem;
+
+        a {
+            color: #eee;
+            text-decoration: none;
+        }
+}
+
+.main {
+    margin-top: $header-height;
+}
+
+.main-nav {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(5, auto);
+    align-items: center;
+    justify-content: right;
+    gap: .7rem;
+    margin-inline: auto;
+    padding-left: $header-icon-size;
+}
+
+.bobert-logo *, .user-menu > * > * {
+    display: inline;
+}
+
+.bobert-logo {
+    display: grid;
+    align-items: center;
+}
+
+.notif-menu, .user-menu {
+    display: grid;
+    justify-content: right;
+}
+
+// .user-menu img {
+//     float: right;
+// }
+// .user-menu div {
+//     float: left;
+// }
+
+.header-icon {
+    width: $header-icon-size!important;
+}
+
+@media screen and (max-width: 950px) {
+    .large-screen {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 951px) {
+    .header {
+        grid-template-columns: 30% 1fr 15% 15%;
+    }
+
+    .small-screen {
+        display: none;
+    }
+}
+
+// .header {
+//     position: sticky;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     height: $header-height;
+//     background-color: #1F2835;
+//     box-shadow: 0 7px 10px #0003;
+//     display: grid;
+//     grid-auto-flow: column;
+// }
+
+// .bobert-logo {
+//     height: $header-height;
+//     padding: .5rem;
+//     font-size: calc($header-height * .4);
+
+//     a {
+//         display: grid;
+//         grid-auto-flow: column;
+//         align-items: center;
+//         justify-content: left;
+//         text-decoration: none;
+
+//         span {
+//             margin-left: .4rem;
+//         }
+
+//         img {
+//             display: inline;
+//             height: calc($header-height * .6);
+//         }
+//     }
+
+// }
+
+// // .bobert-logo {
+// //     a > img {
+// //         height: $header-height;
+// //     }
+// // }
+
+// img {
+//     max-width: 100%;
+// }
