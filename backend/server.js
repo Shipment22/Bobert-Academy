@@ -3,7 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
-
+const ejs = require('ejs')
 const Datastore = require('nedb')
 const loginsDB = new Datastore('logins.db')
 loginsDB.loadDatabase()
@@ -107,24 +107,6 @@ async function login(req, res) {
                             nk: data[0].keys.nk
                         }
                     })
-
-                    // if (res) {
-                    //     let randoString = 'slgk_'
-                    //     for (let i = 0; i < 24; i ++) {
-                    //         randoString += String.fromCharCode(94 + Math.floor(Math.random() * 24))
-                    //     }
-                    //     loginsDB.update({ username: username }, { $set: { slgk: randoString }})
-                    //     console.log('   Key updated in database')
-                    //     res.json({
-                    //         status: 'ok',
-                    //         body: randoString
-                    //     })
-                    //     console.log('   Key sent!')
-                    //     console.log('   Password matches')
-                    // } else {
-                    //     passwordMatched = false
-                    //     console.log('   Password does not match :(')
-                    // }
                 })
             })
         })()
@@ -140,7 +122,39 @@ async function login(req, res) {
 
 app.get('/profile/:user', function(req, res) {
     usersDB.find({ username: req.params.user }, function(err, data) {
-        res.send(data)
+        ejs.renderFile('profilePage.ejs', {
+            profile: {
+                username: 'bobert',
+                displayname: 'Bobert',
+                uid: 'uid_bobert',
+                avatar: '/assets/bobert.png',
+                background: '/assets/bobert-sun.png'
+            },
+            account: {
+                username: 'shipment22',
+                displayname: 'boberts father',
+                uid: 'not a real uid',
+                notifications: [
+                    {
+                        author: 'joe',
+                        authorUID: 'not actual uid',
+                        postedIn: 'not an actual program id',
+                        content: 'hello :)',
+                        time: 'not the actual time'
+                    },
+                    {
+                        author: 'john',
+                        authorUID: 'also not a uid',
+                        postedIn: 'diferent program that doesn\'t exist',
+                        content: 'the content of another message',
+                        time: 'a time'
+                    },
+                ]
+            }
+        }, {}, function(err, str) {
+            if (err) res.send('Error: ' + error)
+            res.send(str)
+        })
     })
 })
 
