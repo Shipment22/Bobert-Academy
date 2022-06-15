@@ -82,9 +82,9 @@ html, body {
     justify-content: right;
 }
 
-// .user-menu img {
-//     float: right;
-// }
+.user-menu img {
+    float: right;
+}
 // .user-menu div {
 //     float: left;
 // }
@@ -95,10 +95,13 @@ html, body {
 
 .footer {
     background: $background-blue2;
+}
+
+.footer-top {
     gap: 2rem;
     column-width: 150px;
     column-count: 4;
-    padding-block: 3rem;
+    padding-top: 2rem;
     padding-inline: 15%;
 
     h1 {
@@ -126,6 +129,21 @@ html, body {
     }
 }
 
+.section {
+    padding-block: 3rem;
+}
+
+.section-content {
+    width: min(76ch, 100%);
+    padding: .5rem;
+    margin-inline: auto;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-block: 2rem;
+}
+
 @media screen and (max-width: 950px) {
     .large-screen {
         display: none;
@@ -139,9 +157,6 @@ html, body {
 
     .small-screen {
         display: none;
-    }
-
-    .footer {
     }
 }
 

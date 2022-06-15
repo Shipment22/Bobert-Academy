@@ -1,13 +1,30 @@
+$bg: #222;
+$col: #eee;
+$selection-bg: #000;
+$selection-col: orange;
+$link-col: orange;
+$feature-hover-bg: #3335;
+$footer-bg: #333;
+$header-height: clamp(2rem, 2.5vw, 3rem);
+$header-icon-size: calc($header-height * .9);
+$orange: #FAA000;
+$green: #9CB53A;
+$background-green: #4B823C;
+$background-blue: #1F2835;
+$background-blue2: #092B5A;
+$html-orange: #F28330;
+$css-blue: #224DE1;
+$javascript-yellow: #E6D02D;
 
 .banner {
-    background-position: 0 75vh;
+    background-position: center 75vh;
     background-size: 100%;
     background-attachment: fixed;
     min-height: 300px;
     display: grid;
-    grid-auto-flow: column;
     padding: 100px;
     padding-inline: 30vw;
+    text-align: center;
 }
 
 .banner > *{
@@ -15,11 +32,12 @@
 }
 
 .profile-avatar-container {
-    background: #333;
+    // background: #333;
     width: 100px;
-    padding: .5rem;
-    border-radius: 50%;
+    // padding: .5rem;
+    // border-radius: 50%;
     display: grid;
+    // box-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000;
 }
 
 .profile-avatar {
@@ -28,5 +46,47 @@
 
 .profile-displayname, .profile-username-uid {
     padding-top: calc(50px - 1rem);
-    text-shadow: 0 0 2px #000;
+    text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000;
+}
+
+.profile-stats {
+    background-color: #282f2a;
+
+    table {
+        background-color: #0003;
+        padding: 1rem;
+        border-radius: .4rem;
+        font-weight: 300;
+        td {
+            padding-right: 1rem;
+        }
+        td+td {
+            padding-inline: 1rem;
+            font-weight: 500;
+            text-align: right;
+        }
+    }
+}
+
+.profile-programs {
+    background-color: #232325;
+}
+
+.profile-chat {
+    background-color: #28203f;
+}
+
+@media screen and (max-width: 950px) {
+    .banner {
+        background-size: auto 100%;
+    }
+    .profile-avatar-container {
+        margin-inline: auto;
+    }
+}
+
+@media screen and (min-width: 951px) {
+    .banner {
+        grid-auto-flow: column;
+    }
 }
