@@ -24,6 +24,31 @@ $javascript-yellow: #E6D02D;
     color: $orange;
 }
 
+.card {
+    background-color: #0003;
+    padding: 1rem;
+    border-radius: .4rem;
+}
+
+.program {
+    width: 250px;
+
+    img {
+        border-radius: .3rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: $green;
+    }
+}
+
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
 html, body {
     background: $bg;
     color: $col;
